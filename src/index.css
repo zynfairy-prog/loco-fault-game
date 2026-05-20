@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #0A0E14;
+  --color-bg-base: #0F1419;
+  --color-bg-elevated: #161B22;
+  --color-bg-surface: #1C2128;
+  --color-bg-hover: #21262D;
+
+  --color-border-subtle: #21262D;
+  --color-border-default: #30363D;
+  --color-border-emphasis: #484F58;
+
+  --color-text-primary: #E6EDF3;
+  --color-text-secondary: #7D8590;
+  --color-text-tertiary: #484F58;
+
+  --color-accent-cyan: #00D4FF;
+  --color-accent-cyan-dim: #0095B8;
+
+  --color-warn-yellow: #FFB800;
+  --color-warn-orange: #FF8800;
+  --color-warn-red: #FF3B3B;
+
+  --color-status-ok: #3FB950;
+  --color-status-active: #00D4FF;
+  --color-status-pending: #D29922;
+  --color-status-error: #F85149;
+
+  --color-role-driver: #00D4FF;
+  --color-role-codriver: #B180FF;
+  --color-role-emergency: #FFB800;
+  --color-role-electrician: #3FB950;
+
+  --font-family-display: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  --font-family-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-display: 48px;
+
+  --animate-pulse-led: pulse-led 1.5s ease-in-out infinite;
+  --animate-flash-border: flash-border 0.5s ease-in-out infinite;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-scroll-x: scroll-x 20s linear infinite;
+
+  @keyframes pulse-led {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes flash-border {
+    0%, 100% { box-shadow: 0 0 0 2px #FF3B3B; }
+    50% { box-shadow: 0 0 20px 4px #FF3B3B; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes led-blink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--warn-red), 0 0 4px var(--warn-red); }
+    50% { opacity: 0.3; box-shadow: 0 0 4px var(--warn-red); }
+  }
+
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heat-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+}
+
+/* CSS variables for runtime use (inline styles, JS access) */
+:root {
+  --bg-deep: #0A0E14;
+  --bg-base: #0F1419;
+  --bg-elevated: #161B22;
+  --bg-surface: #1C2128;
+  --bg-hover: #21262D;
+  --border-subtle: #21262D;
+  --border-default: #30363D;
+  --border-emphasis: #484F58;
+  --text-primary: #E6EDF3;
+  --text-secondary: #7D8590;
+  --text-tertiary: #484F58;
+  --accent-cyan: #00D4FF;
+  --accent-cyan-dim: #0095B8;
+  --accent-cyan-glow: rgba(0, 212, 255, 0.15);
+  --warn-yellow: #FFB800;
+  --warn-orange: #FF8800;
+  --warn-red: #FF3B3B;
+  --warn-red-glow: rgba(255, 59, 59, 0.2);
+  --status-ok: #3FB950;
+  --status-active: #00D4FF;
+  --status-pending: #D29922;
+  --status-error: #F85149;
+  --role-driver: #00D4FF;
+  --role-codriver: #B180FF;
+  --role-emergency: #FFB800;
+  --role-electrician: #3FB950;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan-dim);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Tabular numbers utility */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scanline background pattern */
+.bg-scanline {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+}
+
+/* Grid dot background */
+.bg-grid-dot {
+  background-image: radial-gradient(circle, rgba(0, 212, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glow text utility */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+/* Industrial button base */
+.btn-industrial {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.05em;
+}
+.btn-industrial:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}
+.btn-industrial:active {
+  background: var(--bg-hover);
+}
